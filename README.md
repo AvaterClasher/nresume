@@ -41,7 +41,8 @@ Setting the `pdfjs.GlobalWorkerOptions.workerSrc` to `nresume/pdf.worker.min.mjs
 ```javascript
 import { parseResumeFromFile, pdfjs } from 'nresume';
 
-pdfjs.GlobalWorkerOptions.workerSrc = `nresume/pdf.worker.min.mjs`;
+// Need to get the worker from a CDN the version must be 4.7.76 as the parser is built on top of this version.
+pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.7.76/pdf.worker.min.mjs`;
 
 // Handle file upload (for example, through an input element)
 const fileInput = document
