@@ -100,6 +100,8 @@ export default function Home() {
 }
 ```
 
+#### For Vanilla JavaScript
+
 ```javascript
 import { parseResumeFromFile, pdfjs } from 'nresume';
 
