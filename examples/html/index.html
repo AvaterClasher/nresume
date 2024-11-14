@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nresume</title>
+    <script type="module">
+		import { parseResumeFromFile, pdfjs } from "../../dist/index.mjs";
+        pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.7.76/pdf.worker.min.mjs`;
+		document
+			.getElementById("fileInput")
+			.addEventListener("change", async (event) => {
+				const file = event.target.files[0];
+				if (file) {
+					try {
+						const resumeData = await parseResumeFromFile(file);
+						document.getElementById("output").textContent =
+							JSON.stringify(resumeData, null, 2);
+					} catch (error) {
+						console.error("Error parsing resume:", error);
+					}
+				}
+			});
+	</script>
+</head>
+<body>
+    <input id="fileInput" type="file" />
+    <pre id="output"></pre>
+</body>
+</html>

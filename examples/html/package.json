@@ -1,0 +1,14 @@
+{
+  "name": "html",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Soumyadip Moni",
+  "license": "ISC",
+  "dependencies": {
+    "nresume": "^1.1.0"
+  }
+}
