@@ -36,7 +36,35 @@ npm install nresume
 ### In the Browser (Client-Side)
 
 To use the parser in a browser, import the necessary functions and pass in the PDF file as a Blob.
-Setting the `pdfjs.GlobalWorkerOptions.workerSrc` to `nresume/pdf.worker.min.mjs` is necessary to load the worker script from the correct location.
+Setting the `pdfjs.GlobalWorkerOptions.workerSrc` to a link of the  is necessary to load the worker script from the correct location.
+
+#### For Next.js
+
+```typescript
+if (typeof Promise.withResolvers === "undefined") {
+  if (typeof window !== 'undefined') {
+    // @ts-expect-error This does not exist outside of polyfill which this is doing
+    window.Promise.withResolvers = function () {
+      let resolve, reject
+      const promise = new Promise((res, rej) => {
+        resolve = res
+        reject = rej
+      })
+      return { promise, resolve, reject }
+    }
+  } else {
+    // @ts-expect-error This does not exist outside of polyfill which this is doing
+    global.Promise.withResolvers = function () {
+      let resolve, reject
+      const promise = new Promise((res, rej) => {
+        resolve = res
+        reject = rej
+      })
+      return { promise, resolve, reject }
+    }
+  }
+}
+```
 
 ```javascript
 import { parseResumeFromFile, pdfjs } from 'nresume';
